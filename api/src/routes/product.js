@@ -21,4 +21,15 @@ server.get("/:id", (req, res) => {
   })
 })
 
+server.get("/name/:name", (req, res) => {
+  let { name } = req.params;
+  let query = `%${name}%`;
+  connection.query('SELECT * FROM `product` WHERE `name` LIKE ?', [query], (error, result) => {
+    // error will be an Error if one occurred during the query
+    if (error) res.json({ err: error })
+    // results will contain the result of the query
+    return res.json(result);
+  })
+})
+
 module.exports = server;

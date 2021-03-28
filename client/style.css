@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
 :root {
-  --primaryColor: #f09d51;
+  --primaryColor: #FF6815;
   --mainWhite: #fff;
   --mainBlack: #222;
   --mainGrey: #ececec;
@@ -43,12 +43,69 @@ body {
   font-size: 1.5rem;
   display: flex;
   font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--mainBlack)
 }
 .nav-icon-logo {
   color: var(--primaryColor);
 }
-.nav-search i {
+.search-contain input {
+  font-family: "Lato", sans-serif;
+  background: rgb(11,157,230);
+  width: 15px;
+  height: 15px;
+  padding: 15px;
+  border-radius: 30px;
+  border: none;
+  color: white;
   cursor: pointer;
+  transition: width 1s ease;
+  font-size: 1.2em;
+}
+.search-contain input::placeholder {
+      color: var(--mainGrey);
+}
+.search-contain input:focus {
+      outline: none;
+}
+.search-contain img {
+  width: 15px;
+  height: 15px;
+  margin: 8px 0 0 8px;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+}
+.search-contain p {
+  color: rgb(106, 158, 226);
+  text-transform: uppercase;
+  font-size: .5em;
+  text-align: left;
+  margin-left: 50px;
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 2s;
+}
+.search-contain:before {
+  content: "";
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgb(11,157,230);
+  position: absolute;
+  animation: grow 1s 3;
+}
+
+@keyframes grow {
+  from {
+      transform: scale(1);
+  }
+  to {
+      transform: scale(1.5);
+      opacity: 0;
+  }
 }
 .cart-btn {
   position: relative;

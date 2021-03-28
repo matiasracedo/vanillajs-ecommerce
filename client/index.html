@@ -14,13 +14,14 @@
     <!-- navbar -->
     <nav class="navbar">
         <div class="navbar-center">
-            <span class="nav-icon">
+            <a href="/client/index.html" class="nav-icon">
                 <p class="nav-icon-logo">Bsale</p>Store
-            </span>
-            <form class="nav-search">
-                <input type="text" name="search" placeholder="Buscar productos"/>
-                <i class="fas fa-search" type="submit" ></i>
-            </form>
+            </a>
+            <div class="search-contain">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2621168/search.svg" id="search-btn" alt="search button">
+                <input type="text" id="search" placeholder="">
+                <p id="tip">Presiona enter para buscar</p>
+            </div>
             <div class="cart-btn">
                 <span class="nav-icon">
                     <i class="fas fa-cart-plus"></i>
@@ -49,19 +50,9 @@
             <h2>tu carrito</h2>
             <div class="cart-content">
                 <!-- cart item -->
-                <div class="cart-item">
-                    <img src="" alt="product">
-                    <div>
-                        <h4>Nombre del producto</h4>
-                        <h5>$0.00</h5>
-                        <span class="remove-item">quitar</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-chevron-up"></i>
-                        <p class="item-amount">1</p>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
+                <!--<div class="cart-item">
+                    
+                </div>-->
                 <!-- end of cart item -->
             </div>
             <div class="cart-footer">
