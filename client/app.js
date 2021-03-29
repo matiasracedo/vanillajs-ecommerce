@@ -12,7 +12,7 @@ const productsDOM = document.querySelector('.products-center');
 const searchBtn = document.getElementById('search-btn');
 const search = document.getElementById('search');
 const tip = document.getElementById('tip');
-const home = document.querySelector('.nav-icon')
+const home = document.querySelector('.nav-icon');
 const dburl = "https://nodejs-products-app.herokuapp.com";
 
 // cart
@@ -278,5 +278,5 @@ search.addEventListener('keypress', async (e) => {
 
 // go back to home with navbar icon
 home.addEventListener('click', () => {
-    window.location.replace("https://vanillajs-ecommerce-matias.web.app/");
+    window.location.href("https://vanillajs-ecommerce-matias.web.app/");
 })
