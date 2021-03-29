@@ -262,6 +262,7 @@ search.addEventListener('keydown', () => {
     tip.style.opacity = '1';
 })
 
+// searchbar functionality
 search.addEventListener('keypress', async (e) => {
     const searchUI = new UI();
     if (e.key === 'Enter') {
@@ -273,4 +274,9 @@ search.addEventListener('keypress', async (e) => {
                 searchUI.cartLogic();
             })
       }
+})
+
+// go back to home with navbar icon
+home.addEventListener('click', () => {
+    window.location.replace("https://vanillajs-ecommerce-matias.web.app/");
 })
