@@ -278,5 +278,5 @@ search.addEventListener('keypress', async (e) => {
 
 // go back to home with navbar icon
 home.addEventListener('click', () => {
-    window.location.href("https://vanillajs-ecommerce-matias.web.app/");
+    window.history.back();
 })
