@@ -140,6 +140,8 @@ class UI {
                 ui.setupAPP();
                 // get product by category
                 let id = e.target.value;
+                // if selected option is "Todos"
+                if (id == 0) window.history.go(0);
                 products.getProductByCategory(id).then(prods => 
                     ui.displayProducts(prods)).then(() => {
                         ui.getBagButtons();
