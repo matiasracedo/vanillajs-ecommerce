@@ -13,7 +13,7 @@ app.use((req, res, next) => {
       "Origin, X-Requested-With, Content-Type, Accept, Authorization  "
     );
     next();
-  });
+});
 
 app.use("/products", product);
 app.use("/categories", category);  
