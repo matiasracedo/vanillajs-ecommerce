@@ -13,6 +13,7 @@ const searchBtn = document.getElementById('search-btn');
 const search = document.getElementById('search');
 const tip = document.getElementById('tip');
 const home = document.querySelector('.nav-icon')
+const dburl = "https://nodejs-products-app.herokuapp.com";
 
 // cart
 let cart = [];
@@ -23,7 +24,7 @@ let buttonsDOM = [];
 class Products {
     async getProducts() {
         try {
-            let result = await fetch('http://localhost:3001/products');
+            let result = await fetch(`${dburl}/products`);
             let data = await result.json();
             return data;
         } catch (error) {
@@ -32,7 +33,7 @@ class Products {
     }
     static async getProductById(id) {
         try {
-            let result = await fetch(`http://localhost:3001/products/${id}`);
+            let result = await fetch(`${dburl}/products/${id}`);
             let data = await result.json();
             return data;
         } catch (error) {
@@ -41,7 +42,7 @@ class Products {
     }
     static async getProductByName(name) {
         try {
-            let result = await fetch(`http://localhost:3001/products/name/${name}`);
+            let result = await fetch(`${dburl}/products/name/${name}`);
             let data = await result.json();
             return data;
         } catch (error) {
