@@ -14,6 +14,8 @@ const search = document.getElementById('search');
 const tip = document.getElementById('tip');
 const home = document.querySelector('.nav-icon');
 const dburl = "https://nodejs-products-app.herokuapp.com";
+const selectDOM = document.querySelector('.categories');
+
 
 // cart
 let cart = [];
@@ -40,9 +42,18 @@ class Products {
             console.log(error)
         }
     }
-    static async getProductByName(name) {
+    async getProductByName(name) {
         try {
             let result = await fetch(`${dburl}/products/name/${name}`);
+            let data = await result.json();
+            return data;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    async getCategories() {
+        try {
+            let result = await fetch(`${dburl}/categories`);
             let data = await result.json();
             return data;
         } catch (error) {
@@ -74,10 +85,19 @@ class UI {
         });
         productsDOM.innerHTML = result;
     }
+    displayCategories(categories) {
+        let result = '<option class="category" value="0">Todos</option>';
+        categories.forEach(category => {
+            result += `
+            <option class="category" value=${category.id}>${category.name}</option>
+            `
+        });
+        selectDOM.innerHTML = result;
+    }
     getBagButtons() {
-        const buttons = [...document.querySelectorAll('.bag-btn')];
+        let buttons = [...document.querySelectorAll('.bag-btn')];
         buttonsDOM = buttons;
-        buttons.forEach(button => {
+        buttonsDOM.forEach(button => {
             let id = button.dataset.id;
             let inCart = cart.find(item => item.id === id);
             if (inCart) {
@@ -222,9 +242,11 @@ class Storage {
     }
 }
 
+// initialazing UI and products
+const ui = new UI();
+const products = new Products();
+
 document.addEventListener("DOMContentLoaded", () => {
-    const ui = new UI();
-    const products = new Products();
     // setup app
     ui.setupAPP();
     // get all products
@@ -233,6 +255,9 @@ document.addEventListener("DOMContentLoaded", () => {
             ui.getBagButtons();
             ui.cartLogic();
         })
+    // get categories
+    products.getCategories().then(categories =>
+        ui.displayCategories(categories))    
 })
 
 searchBtn.addEventListener('click', () => {
@@ -264,14 +289,15 @@ search.addEventListener('keydown', () => {
 
 // searchbar functionality
 search.addEventListener('keypress', async (e) => {
-    const searchUI = new UI();
     if (e.key === 'Enter') {
-        // get product
+        // setup app
+        ui.setupAPP();
+        // get product by name
         let name = search.value;
-        Products.getProductByName(name).then(products => 
-            searchUI.displayProducts(products)).then(() => {
-                searchUI.getBagButtons();
-                searchUI.cartLogic();
+        products.getProductByName(name).then(prods => 
+            ui.displayProducts(prods)).then(() => {
+                ui.getBagButtons();
+                ui.cartLogic();
             })
       }
 })
