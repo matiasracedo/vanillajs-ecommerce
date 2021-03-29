@@ -275,8 +275,3 @@ search.addEventListener('keypress', async (e) => {
             })
       }
 })
-
-// go back to home with navbar icon
-home.addEventListener('click', () => {
-    window.history.back();
-})
