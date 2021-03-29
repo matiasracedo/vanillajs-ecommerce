@@ -21,6 +21,8 @@ const selectDOM = document.querySelector('.categories');
 let cart = [];
 // buttons
 let buttonsDOM = [];
+// products
+let shownProducts = [];
 
 // getting the products
 class Products {
@@ -45,6 +47,15 @@ class Products {
     async getProductByName(name) {
         try {
             let result = await fetch(`${dburl}/products/name/${name}`);
+            let data = await result.json();
+            return data;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    async getProductByCategory(id) {
+        try {
+            let result = await fetch(`${dburl}/products/category/${id}`);
             let data = await result.json();
             return data;
         } catch (error) {
@@ -122,6 +133,20 @@ class UI {
                     this.showCart();
                 })
         })
+    }
+    getSelectCategories() {
+        selectDOM.addEventListener('change', (e) => {
+                // setup app
+                ui.setupAPP();
+                // get product by category
+                let id = e.target.value;
+                products.getProductByCategory(id).then(prods => 
+                    ui.displayProducts(prods)).then(() => {
+                        ui.getBagButtons();
+                        ui.cartLogic();
+                    })
+      
+            })
     }
     setCartValues(cartArray) {
         let tempTotal = 0;
@@ -257,7 +282,10 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     // get categories
     products.getCategories().then(categories =>
-        ui.displayCategories(categories))    
+        ui.displayCategories(categories)).then(() => {
+        // select category functionality 
+        ui.getSelectCategories();
+        })    
 })
 
 searchBtn.addEventListener('click', () => {
@@ -288,7 +316,7 @@ search.addEventListener('keydown', () => {
 })
 
 // searchbar functionality
-search.addEventListener('keypress', async (e) => {
+search.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         // setup app
         ui.setupAPP();
@@ -299,5 +327,7 @@ search.addEventListener('keypress', async (e) => {
                 ui.getBagButtons();
                 ui.cartLogic();
             })
-      }
+      
+    }
 })
+
