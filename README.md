@@ -1,4 +1,4 @@
-$Vanilla JavaScript e-commerce 
+Vanilla JavaScript e-commerce 
 ========
 
 This e-commerce web page was developed with Node JS, Express JS and MySQL for the back-end, and HTML, CSS and Vanilla JavaScript in the front-end (no libraries, no frameworks).
